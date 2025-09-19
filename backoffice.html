@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instacart - Backoffice</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/backoffice.css" />
+  </head>
+
+  <body class="h-100 mb-0">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent mb-4">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="./home.html">Instacart</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav nav-masthead">
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="./home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link fw-bold active"
+                aria-current="page"
+                href="./backoffice.html"
+                >Backoffice</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="./about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTENUTO -->
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Backoffice Prodotti</h1>
+        <a href="./home.html" class="btn btn-sm btn-outline-primary">
+          🏠 Torna alla Home
+        </a>
+      </div>
+
+      <!-- ALERT -->
+      <div id="alert-box"></div>
+
+      <!-- SEZIONE CREA -->
+      <section id="create-section" class="mb-5">
+        <h2 class="mb-3">➕ Crea nuovo prodotto</h2>
+        <form
+          id="create-form"
+          class="card p-4 shadow-sm needs-validation"
+          novalidate
+        >
+          <div class="mb-3">
+            <label for="c-name" class="form-label">Nome prodotto</label>
+            <input type="text" id="c-name" class="form-control" required />
+            <div class="invalid-feedback">Inserisci il nome del prodotto</div>
+          </div>
+          <div class="mb-3">
+            <label for="c-description" class="form-label">Descrizione</label>
+            <textarea
+              id="c-description"
+              class="form-control"
+              rows="3"
+              required
+            ></textarea>
+            <div class="invalid-feedback">Inserisci una descrizione</div>
+          </div>
+          <div class="mb-3">
+            <label for="c-brand" class="form-label">Brand</label>
+            <input type="text" id="c-brand" class="form-control" required />
+            <div class="invalid-feedback">Inserisci il brand</div>
+          </div>
+          <div class="mb-3">
+            <label for="c-imageUrl" class="form-label">URL immagine</label>
+            <input type="url" id="c-imageUrl" class="form-control" required />
+            <div class="invalid-feedback">Inserisci un URL valido</div>
+          </div>
+          <div class="mb-3">
+            <label for="c-price" class="form-label">Prezzo (€)</label>
+            <input
+              type="number"
+              id="c-price"
+              class="form-control"
+              required
+              min="1"
+            />
+            <div class="invalid-feedback">Inserisci un prezzo valido</div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Salva</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- SEZIONE MODIFICA -->
+      <section id="edit-section" class="d-none">
+        <h2 class="mb-3">✏️ Modifica prodotto</h2>
+        <form
+          id="edit-form"
+          class="card p-4 shadow-sm needs-validation"
+          novalidate
+        >
+          <div class="mb-3">
+            <label for="e-name" class="form-label">Nome prodotto</label>
+            <input type="text" id="e-name" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="e-description" class="form-label">Descrizione</label>
+            <textarea
+              id="e-description"
+              class="form-control"
+              rows="3"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="e-brand" class="form-label">Brand</label>
+            <input type="text" id="e-brand" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="e-imageUrl" class="form-label">URL immagine</label>
+            <input type="url" id="e-imageUrl" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label for="e-price" class="form-label">Prezzo (€)</label>
+            <input
+              type="number"
+              id="e-price"
+              class="form-control"
+              required
+              min="1"
+            />
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-warning">Aggiorna</button>
+            <button type="button" id="delete-btn" class="btn btn-danger">
+              Elimina
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- LISTA PRODOTTI -->
+      <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
+        <h2 class="mb-0">Lista Prodotti</h2>
+      </div>
+      <div id="product-list" class="row gy-3"></div>
+
+      <!-- FOOTER -->
+      <footer
+        class="d-flex justify-content-center align-items-center mt-5 pb-4"
+      >
+        <p class="mb-0">&copy; 2025 RRSYSTEMS - All rights reserved</p>
+      </footer>
+    </div>
+  </body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"
+  ></script>
+
+  <script src="./scripts/backoffice.js"></script>
+</html>
